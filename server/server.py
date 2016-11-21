@@ -5,8 +5,11 @@ Created on Mon Nov 21 20:58:23 2016
 
 @author: jc
 """
-
+import sys
 import socket
+
+sys.path.append('../')
+from bibli import *
 
 socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 socket.bind(('', 15555))
@@ -19,7 +22,10 @@ while True:
         response = client.recv(255)
         if response != "":
                 print response
-
+                try:
+                    reponse.display()
+                except:
+                    pass
 print "Close"
 client.close()
 stock.close()
