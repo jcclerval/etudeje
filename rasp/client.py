@@ -8,7 +8,7 @@ Created on Mon Nov 21 20:59:03 2016
 
 import socket
 
-hote = "localhost"
+hote = "bord3l"
 port = 15555
 
 socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
