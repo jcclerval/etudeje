@@ -9,6 +9,7 @@ import sys
 import socket
 
 sys.path.append('../')
+
 from bibli import *
 hote = "bord3l"
 port = 15555
@@ -23,7 +24,7 @@ id='35435435'
 
 item = Item(cat,id)
 
-socket.send(item)
+socket.send(item.send())
 
 
 

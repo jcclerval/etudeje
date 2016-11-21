@@ -15,6 +15,16 @@ class Item:
     def display(self):
         print "Objet de catégorie : {categorie}, d'identifiant : {id}".format(categorie=self.cat,id = self.id)
         return 0
+    def send(self):
+        return str(self.cat)+"//"+str(self.id)
+
+def read(message):
+    try:
+        temp = message.split('//')
+        return Item(temp[0],temp[1])
+    except:
+        return 0
+        
         
 if __name__ == '__main__':
     cat = 'tournevis'

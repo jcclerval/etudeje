@@ -23,7 +23,7 @@ while True:
         if response != "":
                 print response
                 try:
-                    reponse.display()
+                    read(response).display()
                 except:
                     pass
 print "Close"
