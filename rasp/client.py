@@ -9,24 +9,17 @@ import sys
 import socket
 
 sys.path.append('../')
-
 from bibli import *
-hote = "bord3l"
-port = 15555
 
-socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-socket.connect((hote, port))
-print "Connection on {}".format(port)
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(("", bord3l))
 
-print "Création de l'objet"
-cat = 'tournevis'
-id='35435435'
-
-item = Item(cat,id)
-
-socket.send(item.send())
-
-
-
-print "Close"
+print("Le nom du fichier que vous voulez récupérer:")
+file_name = input(">> ") # utilisez raw_input() pour les anciennes versions python
+s.send(file_name.encode())
+file_name = 'data/%s' % (file_name,)
+r = s.recv(9999999)
+with open(file_name,'wb') as _file:
+    _file.write(r)
+print("Le fichier a été correctement copié dans : %s." % file_name)
 socket.close()
