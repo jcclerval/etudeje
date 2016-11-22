@@ -27,9 +27,7 @@ class ClientThread(threading.Thread):
         print("Connection de %s %s" % (self.ip, self.port, ))
 
         r = self.clientsocket.recv(2048)
-        print("Ouverture du fichier: ", r, "...")
-        fp = open(r, 'rb')
-        self.clientsocket.send(fp.read())
+        self.clientsocket.send("Yolo : "+r)
 
         print("Client déconnecté...")
 
@@ -42,5 +40,5 @@ while True:
     print( "En écoute...")
     (clientsocket, (ip, port)) = tcpsock.accept()
     newthread = ClientThread(ip, port, clientsocket)
-    newthread.start())
+    newthread.start()
 stock.close()
