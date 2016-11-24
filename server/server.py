@@ -26,6 +26,9 @@ def connect():
         
         print "Database version : %s " % ver
         
+        cur.execute("FROM centres SELECT *")
+        print cur.fetchone()
+        
     except mdb.Error, e:
       
         print "Error %d: %s" % (e.args[0],e.args[1])
