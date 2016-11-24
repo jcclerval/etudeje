@@ -16,7 +16,7 @@ s.connect(("bord3l", 1111))
 
 print("Envoyer des données")
 file_name = input(">> ") # utilisez raw_input() pour les anciennes versions python
-s.send(file_name
+s.send(file_name)
 print s.recv(9999999)
 
 s.close()
