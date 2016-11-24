@@ -14,7 +14,7 @@ import threading
 sys.path.append('../')
 from bibli import *
 
-def connect():
+def connect(message):
     con = False
     try:
         con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
@@ -28,6 +28,12 @@ def connect():
         
         cur.execute("SELECT * FROM centres")
         print cur.fetchone()
+        
+        print "Message :",message
+        data = message.split(//)
+        
+        try cur.execute(
+        "INSERT INTO outils VALUES({data0}, {data1},{data2},{data3},{data5});".format(data0 = data[0], data1 = data[1], data2 = data[2], data3 = data[3], data4 = data[4]))
         
     except mdb.Error, e:
       
@@ -58,7 +64,7 @@ class ClientThread(threading.Thread):
 
         r = self.clientsocket.recv(2048)
         self.clientsocket.send("Yolo : "+r)
-        connect()
+        connect(r)
         print("Client déconnecté...")
 
 tcpsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

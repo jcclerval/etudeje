@@ -15,8 +15,17 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(("bord3l", 1111))
 
 print("Envoyer des données")
-file_name = input(">> ") # utilisez raw_input() pour les anciennes versions python
-s.send(file_name)
-print s.recv(9999999)
+
+id = 5
+nom = 'cle à pipe'
+ref = 'YoloSwag'
+nbrMin = 20
+photo = 'cle.jpg'
+
+data = [id, nom, ref, nbrMin, photo]
+
+
+s.send("//".join(data))
+print "Donénes envoyées"
 
 s.close()
