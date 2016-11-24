@@ -32,8 +32,10 @@ def connect(message):
         print "Message :",message
         data = message.split("//")
         
-        try cur.execute("INSERT INTO outils VALUES({data0}, {data1},{data2},{data3},{data5});".format(data0 = data[0], data1 = data[1], data2 = data[2], data3 = data[3], data4 = data[4]))
-        
+        try:
+            cur.execute("INSERT INTO outils VALUES({data0}, {data1},{data2},{data3},{data5});".format(data0 = data[0], data1 = data[1], data2 = data[2], data3 = data[3], data4 = data[4]))
+        except:
+            pass
     except mdb.Error, e:
       
         print "Error %d: %s" % (e.args[0],e.args[1])
