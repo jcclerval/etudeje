@@ -14,6 +14,31 @@ import threading
 sys.path.append('../')
 from bibli import *
 
+def connect():
+    con = False
+    try:
+        con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
+    
+        cur = con.cursor()
+        cur.execute("SELECT VERSION()")
+    
+        ver = cur.fetchone()
+        
+        print "Database version : %s " % ver
+        
+    except mdb.Error, e:
+      
+        print "Error %d: %s" % (e.args[0],e.args[1])
+        sys.exit(1)
+        
+    finally:    
+            
+        if con:    
+            con.close()
+    return 0
+    
+
+
 class ClientThread(threading.Thread):
 
     def __init__(self, ip, port, clientsocket):
@@ -45,27 +70,3 @@ while True:
     newthread.start()
 stock.close()
 
-
-def connect():
-    con = False
-    try:
-        con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
-    
-        cur = con.cursor()
-        cur.execute("SELECT VERSION()")
-    
-        ver = cur.fetchone()
-        
-        print "Database version : %s " % ver
-        
-    except mdb.Error, e:
-      
-        print "Error %d: %s" % (e.args[0],e.args[1])
-        sys.exit(1)
-        
-    finally:    
-            
-        if con:    
-            con.close()
-    return 0
-    
