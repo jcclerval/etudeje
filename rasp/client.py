@@ -16,13 +16,13 @@ s.connect(("bord3l", 1111))
 
 print("Envoyer des données")
 
-id = 5
+ide = '5'
 nom = 'cle à pipe'
 ref = 'YoloSwag'
-nbrMin = 20
+nbrMin = '20'
 photo = 'cle.jpg'
 
-data = [id, nom, ref, nbrMin, photo]
+data = [ide, nom, ref, nbrMin, photo]
 
 print "//".join(data)
 s.send("//".join(data))
