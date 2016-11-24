@@ -5,7 +5,9 @@ Created on Mon Nov 21 20:58:23 2016
 
 @author: jc
 """
+import MySQLdb as mdb
 import sys
+
 import socket
 import threading
 
@@ -28,7 +30,7 @@ class ClientThread(threading.Thread):
 
         r = self.clientsocket.recv(2048)
         self.clientsocket.send("Yolo : "+r)
-
+        connect()
         print("Client déconnecté...")
 
 tcpsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -42,3 +44,28 @@ while True:
     newthread = ClientThread(ip, port, clientsocket)
     newthread.start()
 stock.close()
+
+
+def connect():
+    con = False
+    try:
+        con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
+    
+        cur = con.cursor()
+        cur.execute("SELECT VERSION()")
+    
+        ver = cur.fetchone()
+        
+        print "Database version : %s " % ver
+        
+    except mdb.Error, e:
+      
+        print "Error %d: %s" % (e.args[0],e.args[1])
+        sys.exit(1)
+        
+    finally:    
+            
+        if con:    
+            con.close()
+    return 0
+    

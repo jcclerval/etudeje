@@ -19,4 +19,4 @@ file_name = input(">> ") # utilisez raw_input() pour les anciennes versions pyth
 s.send(file_name.encode())
 print s.recv(9999999)
 
-socket.close()
+s.close()

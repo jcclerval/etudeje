@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Structure de la table `camion`
 --
+CREATE DATABASE IF NOT EXISTS `u925639974_grdf`
 
 CREATE TABLE IF NOT EXISTS `camion` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
