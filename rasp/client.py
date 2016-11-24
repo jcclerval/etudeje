@@ -24,7 +24,7 @@ photo = 'cle.jpg'
 
 data = [id, nom, ref, nbrMin, photo]
 
-
+print "//".join(data)
 s.send("//".join(data))
 print "Donénes envoyées"
 
