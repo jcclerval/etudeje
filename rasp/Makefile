@@ -35,7 +35,7 @@ stapi:
 	(cd ../../skyetek-c-api-for-linux/SkyeTekAPI/unix; $(MAKE) -j8)
 
 $(EXE): $(OBJS) stapi
-	$(CC) -o $@ $(OBJS) $(LIBS)
+	$(CC) -o ../../example $(OBJS) $(LIBS)
 	@echo
 
 %.a: %.o
