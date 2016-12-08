@@ -15,9 +15,7 @@ def on_connect(client, userdata, flags, rc):
   client.subscribe("hello")
 
 def on_message(client, userdata, msg):
-  if (msg.payload == "Hello World!"):
-    print("Yes!")
-    client.disconnect()
+    print "Topic: ", msg.topic+'\nMessage: 'str(msg.payload))
     
 client = mqtt.Client()
 client.connect("192.168.1.35",1883,60)

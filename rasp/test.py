@@ -36,8 +36,11 @@ def read():
     print temp
     ## Connexion au broker mqtt
     mqttc = mosquitto.Client()
+    mqttc.connect("192.168.1.35", 1883)
     
     for element in temp:
+        mqttc.publish("etudeje", element)
+        mqttc.loop(2)
         
     proc.wait()
     print "Proc mort"
