@@ -41,7 +41,6 @@ def read():
     for element in temp:
         mqttc.publish("etudeje", element)
         mqttc.loop(2)
-        
     proc.wait()
     print "Proc mort"
     return 0
