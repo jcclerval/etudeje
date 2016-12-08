@@ -12,10 +12,10 @@ import paho.mqtt.client as mqtt
 
 def on_connect(client, userdata, flags, rc):
   print("Connected with result code "+str(rc))
-  client.subscribe("topic/test")
+  client.subscribe("hello")
 
 def on_message(client, userdata, msg):
-  if (msg.payload == "Hello world!"):
+  if (msg.payload == "Hello World!"):
     print("Yes!")
     client.disconnect()
     

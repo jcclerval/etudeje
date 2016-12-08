@@ -10,6 +10,6 @@ mqttc = mosquitto.Client()
 
 
 mqttc.connect("192.168.1.35", 1883)
-mqttc.publish("hello", "Hello, World!")
+mqttc.publish("hello", "Hello World!")
 mqttc.loop(2) 
 
