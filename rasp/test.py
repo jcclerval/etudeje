@@ -9,25 +9,38 @@ from subprocess import Popen, PIPE
 from multiprocessing import Process
 import os
 
-os.chdir("/home/jc/Documents/EtudeJE/dev/skyetek-c-api-for-linux/Examples/linux/")
+#os.chdir("/home/jc/Documents/EtudeJE/dev/skyetek-c-api-for-linux/Examples/linux/")
 
 
 
 def read():
     proc = Popen(["./example"],stdout=PIPE)
-    i = 0
-    while i < 10:
+    i = 1
+    temp = []
+    print "Yolo :",proc.stdout.readline()
+    print "Yolo :",proc.stdout.readline()
+    print "Yolo :",proc.stdout.readline()
+
+    while i < 100:
         try:
-            print proc.communicate()[0]
-            i += 1
+            recep = proc.stdout.readline()
+            if recep != "NTR\n":
+                temp.append(recep.split('\n')[0])
+                print i, recep
         except:
             pass
+        print i
+        i = i + 1
+    temp = list(set(temp))
+    print temp
+    proc.wait()
+    print "Proc mort"
     return 0
     
 if __name__ == '__main__':
-    os.chdir("/home/jc/Documents/EtudeJE/dev/skyetek-c-api-for-linux/Examples/linux/")
+    os.chdir("../../")
     proces = Process(target=read)
     proces.start()
     
-    proces.join(10)
+
     print "terminé"
