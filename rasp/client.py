@@ -6,10 +6,10 @@ Created on Mon Nov 21 20:59:03 2016
 """
 import paho.mqtt.client as mosquitto
 
-mqttc = mosquitto.Client("python_pub")
+mqttc = mosquitto.Client()
 
 
-mqttc.connect("192.168.43.235", 1883)
-mqttc.publish("hello/world", "Hello, World!")
+mqttc.connect("192.168.1.32", 1883)
+mqttc.publish("hello", "Hello, World!")
 mqttc.loop(2) 
 
