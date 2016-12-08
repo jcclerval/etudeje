@@ -4,28 +4,12 @@ Created on Mon Nov 21 20:59:03 2016
 
 @author: jc
 """
+import paho.mqtt.client as mosquitto
 
-import sys
-import socket
+mqttc = mosquitto.Client("python_pub")
 
-sys.path.append('../')
-from bibli import *
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect(("bord3l", 1111))
+mqttc.connect("192.168.43.235", 1883)
+mqttc.publish("hello/world", "Hello, World!")
+mqttc.loop(2) 
 
-print("Envoyer des données")
-
-ide = '5'
-nom = 'cle à pipe'
-ref = 'YoloSwag'
-nbrMin = '20'
-photo = 'cle.jpg'
-
-data = [ide, nom, ref, nbrMin, photo]
-
-print "//".join(data)
-s.send("//".join(data))
-print "Donénes envoyées"
-
-s.close()

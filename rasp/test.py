@@ -8,6 +8,7 @@ Created on Sat Dec  3 12:35:20 2016
 from subprocess import Popen, PIPE
 from multiprocessing import Process
 import os
+import paho.mqtt.client as mosquitto
 
 #os.chdir("/home/jc/Documents/EtudeJE/dev/skyetek-c-api-for-linux/Examples/linux/")
 
@@ -33,6 +34,11 @@ def read():
         i = i + 1
     temp = list(set(temp))
     print temp
+    ## Connexion au broker mqtt
+    mqttc = mosquitto.Client()
+    
+    for element in temp:
+        
     proc.wait()
     print "Proc mort"
     return 0
