@@ -14,7 +14,7 @@ import sys
 ## Définition des variables ---------------------------------------------------
 serverName = "bord3l"
 serverPort = 1883
-
+camionId = 26
 ## ----------------------------------------------------------------------------
 
 
@@ -40,13 +40,13 @@ def scan(l):
     publish(temp)
     return temp
     
-def publish(temp):
+def publish(camionId, data):
     # Connexion au broker mqtt
     mqttc = mosquitto.Client()
     mqttc.connect(serverName, serverPort)
     
-    for element in temp:
-        mqttc.publish("etudeje", element)
+    for element in data:
+        mqttc.publish("etudeje/"+str(camionId), element)
         mqttc.loop(2)
     return 0
     
@@ -58,12 +58,12 @@ def main(l):
     
 if __name__ == '__main__':
     try:
-        l = 30
-        main(l)
-#        print "Envoi en cours"
-#        publish(['yolo','test'])
-#        print "Elements envoyés"
-#        sys.exit(0)
+#        l = 30
+#        main(l)
+        print "Envoi en cours"
+        publish(camionId, ['yolo','test'])
+        print "Elements envoyés"
+        sys.exit(0)
     except KeyboardInterrupt:
         print '\nInterrupted'
         try:
