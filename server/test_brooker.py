@@ -31,7 +31,7 @@ def fetchData(camion, etiId):
         print etiId
         con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
         cur = con.cursor()
-        cur.execute("SELECT * FROM outils WHERE ref='{ref}';".format(ref=str(etiId))
+        cur.execute("SELECT * FROM outils WHERE ref='{ref}';".format(ref=str(etiId)))
         temp = cur.fetchone()
         print temp
         updateData(camion, temp)
