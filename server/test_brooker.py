@@ -44,6 +44,7 @@ def fetchData(camion, etiId):
             
         if con:    
             con.close()
+    print "INSERT INTO effectifs VALUES({data0}, {data1}, '{data2}', {data3});".format(data0 = str(NULL), data1 = int(camion), data2 = str(temp[0]), data3 = int(1))
     try:
         updateData(camion, temp[0])
     except:
