@@ -22,7 +22,7 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):
     print "Topic: ", msg.topic+'\nMessage: '+str(msg.payload)
-    print msg.topic.split('/')
+    fetchData(msg.topic.split('/')[-1], msg)
     
     # Mise à jour de la base de donnees
 def fetchData(camion, etiId):
@@ -32,6 +32,7 @@ def fetchData(camion, etiId):
         cur = con.cursor()
         cur.execute("SELECT * FROM outils WHERE ref='{ref}';".format(ref=etiId))
         temp = cur.fetchone()
+        print temp
         updateData(camion, temp)
         return 0
     except mdb.Error, e:
