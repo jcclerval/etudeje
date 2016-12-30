@@ -45,10 +45,7 @@ def fetchData(camion, etiId):
             
         if con:    
             con.close()
-    try:
-        updateData(camion, temp[0])
-    except:
-        pass
+    updateData(camion, temp[0])
     return 0
     
 def updateData(camion, data):
