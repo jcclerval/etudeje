@@ -7,6 +7,7 @@ Created on Tue Nov 29 21:14:30 2016
 #!/usr/bin/env python
 
 import paho.mqtt.client as mqtt
+import sys
 
 ## Définition des variables ---------------------------------------------------
 serverName = "bord3l"
@@ -22,13 +23,41 @@ def on_message(client, userdata, msg):
     print "Topic: ", msg.topic+'\nMessage: '+str(msg.payload)
     
     # Mise à jour de la base de donnees
+def fetchData(etiID):
+    con = False
+    try:
+        con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
     
-client = mqtt.Client()
-client.connect(serverName,serverPort,60)
+        cur = con.cursor()
+        cur.execute("SELECT * FROM outils WHERE ref={ref};".format(ref=etiId))
+        print cur.fetchone()
+    except mdb.Error, e:
+      
+        print "Error %d: %s" % (e.args[0],e.args[1])
+        sys.exit(1)
+        
+    finally:    
+            
+        if con:    
+            con.close()
 
-client.on_connect = on_connect
-client.on_message = on_message
+    return 0
+    
+def updateData():
+    return 0
+    
+def main():
+    client = mqtt.Client()
+    client.connect(serverName,serverPort,60)
+    
+    client.on_connect = on_connect
+    client.on_message = on_message
+    
+    client.loop_forever()
+    
+    sys.exit(0)
 
-client.loop_forever()
-
-
+if __name__ == '__main__':
+    
+    fetchData('YoloSwag')
+    print 'Terminé'
