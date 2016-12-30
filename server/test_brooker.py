@@ -48,12 +48,14 @@ def fetchData(camion, etiId):
     return 0
     
 def updateData(camion, data):
+    print data
     con = False
     try:
         con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
     
         cur = con.cursor()
         try:
+            print "INSERT INTO effectifs VALUES({data0}, {data1}, '{data2}', {data3});".format(data0 = str(NULL), data1 = int(camion), data2 = str(data[0]), data3 = int(1))
             cur.execute("INSERT INTO effectifs VALUES({data0}, {data1}, '{data2}', {data3});".format(data0 = str(NULL), data1 = int(camion), data2 = str(data[0]), data3 = int(1)))
         except:
             pass
