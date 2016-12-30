@@ -6,6 +6,7 @@ Created on Tue Nov 29 21:14:30 2016
 """
 #!/usr/bin/env python
 
+import MySQLdb as mdb
 import paho.mqtt.client as mqtt
 import sys
 
