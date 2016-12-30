@@ -28,7 +28,7 @@ def on_message(client, userdata, msg):
 def fetchData(camion, etiId):
     con = False
     try:
-        print "Etiquette :', etiId
+        print "Etiquette :", etiId
         con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
         cur = con.cursor()
         cur.execute("SELECT * FROM outils WHERE ref='{ref}';".format(ref=str(etiId)))
