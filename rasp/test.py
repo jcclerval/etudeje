@@ -61,7 +61,7 @@ if __name__ == '__main__':
 #        l = 30
 #        main(l)
         print "Envoi en cours"
-        publish(camionId, ['3545435'])
+        publish(camionId, ['YoloSwag'])
         print "Elements envoyés"
         sys.exit(0)
     except KeyboardInterrupt:
