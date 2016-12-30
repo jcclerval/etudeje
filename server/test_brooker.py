@@ -22,18 +22,18 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):
     print "Topic: ", msg.topic+'\nMessage: '+str(msg.payload)
+    print msg.topic.split('/')
     
     # Mise à jour de la base de donnees
-def fetchData(etiId):
+def fetchData(camion, etiId):
     con = False
     try:
         con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
-    
         cur = con.cursor()
         cur.execute("SELECT * FROM outils WHERE ref='{ref}';".format(ref=etiId))
         temp = cur.fetchone()
-        for ele in temp:
-            print ele
+        updateData(camion, temp)
+        return 0
     except mdb.Error, e:
       
         print "Error %d: %s" % (e.args[0],e.args[1])
@@ -46,7 +46,25 @@ def fetchData(etiId):
 
     return 0
     
-def updateData():
+def updateData(camion, data):
+    con = False
+    try:
+        con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
+    
+        cur = con.cursor()
+        try:
+            cur.execute("INSERT INTO effectifs VALUES({data0}, '{data1}', '{data2}', '{data3}');".format(data0 = NULL, data1 = camion, data2 = data[0], data3 = 1))
+        except:
+            pass
+    except mdb.Error, e:
+      
+        print "Error %d: %s" % (e.args[0],e.args[1])
+        sys.exit(1)
+        
+    finally:    
+            
+        if con:    
+            con.close()
     return 0
     
 def main():
@@ -62,5 +80,5 @@ def main():
 
 if __name__ == '__main__':
     
-    fetchData('YoloSwag')
+    main()
     print 'Terminé'

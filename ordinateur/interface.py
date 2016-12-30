@@ -19,8 +19,8 @@ def publish(temp):
     mqttc.connect(serverName, serverPort)
     
     if len(temp) == 3:
-        mqttc.publish("NouvelOutil/"+temp0+"/genre", temp1)
-        mqttc.publish("NouvelOutil/"+temp0+"/photo", temp2)
+        mqttc.publish("etudeje/NouvelOutil/"+temp0+"/genre", temp1)
+        mqttc.publish("etudeje/NouvelOutil/"+temp0+"/photo", temp2)
         
         mqttc.loop(2)
     return 0
