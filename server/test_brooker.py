@@ -33,7 +33,7 @@ def fetchData(camion, etiId):
         cur = con.cursor()
         cur.execute("SELECT id FROM outils WHERE ref='{ref}';".format(ref=str(etiId)))
         temp = cur.fetchone()
-        print temp
+        print temp[0]
         for ele in temp:
             print "Element :",temp
         print "Type :", type(temp)
