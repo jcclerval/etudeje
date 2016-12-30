@@ -8,7 +8,11 @@ Created on Tue Nov 29 21:14:30 2016
 
 import paho.mqtt.client as mqtt
 
-# This is the Subscriber
+## Définition des variables ---------------------------------------------------
+serverName = "bord3l"
+serverPort = 1883
+
+## ----------------------------------------------------------------------------r
 
 def on_connect(client, userdata, flags, rc):
   print("Connected with result code "+str(rc))
@@ -20,7 +24,7 @@ def on_message(client, userdata, msg):
     # Mise à jour de la base de donnees
     
 client = mqtt.Client()
-client.connect("192.168.1.35",1883,60)
+client.connect(serverName,serverPort,60)
 
 client.on_connect = on_connect
 client.on_message = on_message
