@@ -36,6 +36,7 @@ def fetchData(camion, etiId):
         print temp
         for ele in temp:
             print "Element :",temp
+        print "Type :", type(temp)
         updateData(camion, temp)
         return 0
     except mdb.Error, e:
