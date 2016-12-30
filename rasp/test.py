@@ -61,6 +61,7 @@ if __name__ == '__main__':
         print '\nInterrupted'
         try:
             for child in active_children():
+                print child
                 child.terminate()
             sys.exit(0)
         except SystemExit:
