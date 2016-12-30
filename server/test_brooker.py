@@ -35,7 +35,6 @@ def fetchData(camion, etiId):
         cur.execute("SELECT id FROM outils WHERE ref='{ref}';".format(ref=str(etiId)))
         temp = cur.fetchone()
         print temp[0]
-        return 0
     except mdb.Error, e:
       
         print "Error %d: %s" % (e.args[0],e.args[1])
