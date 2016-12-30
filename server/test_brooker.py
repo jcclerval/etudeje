@@ -54,7 +54,7 @@ def updateData(camion, data):
     
         cur = con.cursor()
         try:
-            cur.execute("INSERT INTO effectifs VALUES({data0}, '{data1}', '{data2}', '{data3}');".format(data0 = NULL, data1 = camion, data2 = data[0], data3 = 1))
+            cur.execute("INSERT INTO effectifs VALUES({data0}, {data1}, '{data2}', {data3});".format(data0 = NULL, data1 = camion, data2 = data[0], data3 = 1))
         except:
             pass
     except mdb.Error, e:
