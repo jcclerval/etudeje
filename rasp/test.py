@@ -6,7 +6,7 @@ Created on Sat Dec  3 12:35:20 2016
 """
 
 from subprocess import Popen, PIPE
-from multiprocessing import Process
+from multiprocessing import Process, active_children
 import os
 import paho.mqtt.client as mosquitto
 import sys
@@ -60,6 +60,8 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         print '\nInterrupted'
         try:
+            for child in active_children():
+                child.terminate()
             sys.exit(0)
         except SystemExit:
             os._exit(0)
