@@ -34,10 +34,7 @@ def fetchData(camion, etiId):
         cur.execute("SELECT id FROM outils WHERE ref='{ref}';".format(ref=str(etiId)))
         temp = cur.fetchone()
         print temp[0]
-        for ele in temp:
-            print "Element :",temp
-        print "Type :", type(temp)
-        updateData(camion, temp)
+        updateData(camion, temp[0])
         return 0
     except mdb.Error, e:
       
