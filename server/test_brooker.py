@@ -31,9 +31,11 @@ def fetchData(camion, etiId):
         print "Etiquette :", etiId
         con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
         cur = con.cursor()
-        cur.execute("SELECT * FROM outils WHERE ref='{ref}';".format(ref=str(etiId)))
+        cur.execute("SELECT id FROM outils WHERE ref='{ref}';".format(ref=str(etiId)))
         temp = cur.fetchone()
         print temp
+        for ele in temp:
+            print "Element :",temp
         updateData(camion, temp)
         return 0
     except mdb.Error, e:
