@@ -24,14 +24,16 @@ def on_message(client, userdata, msg):
     print "Topic: ", msg.topic+'\nMessage: '+str(msg.payload)
     
     # Mise à jour de la base de donnees
-def fetchData(etiID):
+def fetchData(etiId):
     con = False
     try:
         con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
     
         cur = con.cursor()
-        cur.execute("SELECT * FROM outils WHERE ref={ref};".format(ref=etiId))
-        print cur.fetchone()
+        cur.execute("SELECT * FROM outils WHERE ref='{ref}';".format(ref=etiId))
+        temp = cur.fetchone()
+        for ele in temp:
+            print ele
     except mdb.Error, e:
       
         print "Error %d: %s" % (e.args[0],e.args[1])
