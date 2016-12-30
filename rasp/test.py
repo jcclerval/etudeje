@@ -40,7 +40,7 @@ def scan(l):
 def publish(temp):
     # Connexion au broker mqtt
     mqttc = mosquitto.Client()
-    mqttc.connect("192.168.1.35", 1883)
+    mqttc.connect("bord3l", 1883)
     
     for element in temp:
         mqttc.publish("etudeje", element)
@@ -55,8 +55,12 @@ def main(l):
     
 if __name__ == '__main__':
     try:
-        l = 60
-        main(l)
+#        l = 60
+#        main(l)
+        print "Envoi en cours"
+        publish(['yolo','test'])
+        print "Elements envoyés"
+        sys.exit(0)
     except KeyboardInterrupt:
         print '\nInterrupted'
         try:
