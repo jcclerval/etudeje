@@ -22,13 +22,13 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):
     print "Topic: ", msg.topic+'\nMessage: '+str(msg.payload)
-    fetchData(msg.topic.split('/')[-1], msg)
+    fetchData(msg.topic.split('/')[-1], str(msg.payload))
     
     # Mise à jour de la base de donnees
 def fetchData(camion, etiId):
     con = False
     try:
-        print etiId
+        print "Etiquette :', etiId
         con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
         cur = con.cursor()
         cur.execute("SELECT * FROM outils WHERE ref='{ref}';".format(ref=str(etiId)))
