@@ -11,8 +11,11 @@ import os
 import paho.mqtt.client as mosquitto
 import sys
 
-#os.chdir("/home/jc/Documents/EtudeJE/dev/skyetek-c-api-for-linux/Examples/linux/")
+## Définition des variables ---------------------------------------------------
+serverName = "bord3l"
+serverPort = 1883
 
+## ----------------------------------------------------------------------------
 
 
 def read():
@@ -34,13 +37,13 @@ def scan(l):
         if red != None:
             temp.append(red)
     temp = list(set(temp))
-    print temp
+    publish(temp)
     return temp
     
 def publish(temp):
     # Connexion au broker mqtt
     mqttc = mosquitto.Client()
-    mqttc.connect("bord3l", 1883)
+    mqttc.connect(serverName, serverPort)
     
     for element in temp:
         mqttc.publish("etudeje", element)
@@ -55,12 +58,12 @@ def main(l):
     
 if __name__ == '__main__':
     try:
-#        l = 60
-#        main(l)
-        print "Envoi en cours"
-        publish(['yolo','test'])
-        print "Elements envoyés"
-        sys.exit(0)
+        l = 30
+        main(l)
+#        print "Envoi en cours"
+#        publish(['yolo','test'])
+#        print "Elements envoyés"
+#        sys.exit(0)
     except KeyboardInterrupt:
         print '\nInterrupted'
         try:

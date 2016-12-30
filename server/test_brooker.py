@@ -12,7 +12,7 @@ import paho.mqtt.client as mqtt
 serverName = "bord3l"
 serverPort = 1883
 
-## ----------------------------------------------------------------------------r
+## ----------------------------------------------------------------------------
 
 def on_connect(client, userdata, flags, rc):
   print("Connected with result code "+str(rc))
