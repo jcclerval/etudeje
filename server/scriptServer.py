@@ -10,7 +10,7 @@ Created on Tue Nov 29 21:14:30 2016
 import MySQLdb as mdb
 import paho.mqtt.client as mqtt
 import sys
-
+import time
 ## Définition des variables ---------------------------------------------------
 serverName = "bord3l"
 serverPort = 1883
