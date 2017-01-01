@@ -42,7 +42,9 @@ def read():
         proc = Popen(["./example"],stdout=PIPE)
         proc.wait()
         recep = proc.stdout.readline()
+        print "Recep :", recep
         if recep == "Segmentation fault\n":
+            print "Segmentation fault"
             return read()
         elif recep != "NTR\n":
             print recep.split('\n')[0]
