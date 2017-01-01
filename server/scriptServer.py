@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
+#!/usr/bin/env python
 """
 Created on Tue Nov 29 21:14:30 2016
 
-@author: jc
+@author: Jean-Christophe Clerval
 """
-#!/usr/bin/env python
 
+### IMPORTS NECESSAIRES -------------------------------------------------------
 import MySQLdb as mdb
 import paho.mqtt.client as mqtt
 import sys
@@ -16,6 +17,22 @@ serverPort = 1883
 
 ## ----------------------------------------------------------------------------
 
+### FONCTIONS UTILES ----------------------------------------------------------
+"""
+Liste des fonctions utiles :
+- on_connect():
+    Definit le comportement du broker lorsqu'une connexion a lieu.
+
+- on_message():
+    Definit le comportement lors de la reception d'un message.
+    
+- fetchData(camion, etiId):
+    Récupère les informations concernant l'outil selectionné et lance
+    updateData().
+
+- updateData(camion, data):
+    Met à jour la BDD.
+"""
 def on_connect(client, userdata, flags, rc):
   print("Connected with result code "+str(rc))
   client.subscribe("etudeje/+")
@@ -27,7 +44,6 @@ def on_message(client, userdata, msg):
     # Mise à jour de la base de donnees
 def fetchData(camion, etiId):
     con = False
-    print "INSERT INTO effectifs VALUES({data0}, {data1}, '{data2}', {data3});".format(data0 = str('NULL'), data1 = int(camion), data2 = str("YoloSwag"), data3 = int(1))
     try:
         print "Etiquette :", etiId
         con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
@@ -72,8 +88,13 @@ def updateData(camion, data):
         if con:    
             con.close()
     return 0
-    
-def main():
+  
+### INITIALISATION DU SCRIPT --------------------------------------------------
+print "Initialisation du script"
+time.sleep(10)
+
+### LANCEMENT DE l'ECOUTE------------------------------------------------------
+try:
     client = mqtt.Client()
     client.connect(serverName,serverPort,60)
     
@@ -83,8 +104,8 @@ def main():
     client.loop_forever()
     
     sys.exit(0)
-
-if __name__ == '__main__':
-    
-    main()
-    print 'Terminé'
+except KeyboardInterrupt:
+    print '\nInterrupted'
+    sys.exit(0)
+except SystemExit:
+    os._exit(0)
