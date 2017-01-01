@@ -42,7 +42,9 @@ def read():
         proc = Popen(["./example"],stdout=PIPE)
         proc.wait()
         recep = proc.stdout.readline()
-        if recep != "NTR\n":
+        if recep == "Segmentation fault\n":
+            return read()
+        elif recep != "NTR\n":
             print recep.split('\n')[0]
             return recep.split('\n')[0]
     except:
@@ -57,7 +59,7 @@ def scan(l):
         if red != None:
             temp.append(red)                                                   # On ajoute la valeur de l'étiquette si elle est non nulle
     temp = list(set(temp))                                                     # On transforme la liste pour supprimer les doublons
-    publish(temp)                                                              # On publie la liste des etiquettes trouvées
+    publish(camionId, temp)                                                    # On publie la liste des etiquettes trouvées
     return 0
     
 def publish(camionId, data):
@@ -91,22 +93,3 @@ except KeyboardInterrupt:
         os._exit(0)
 print "terminé"
 ### FIN DU SCRIPT -------------------------------------------------------------
-    
-if __name__ == '__main__':
-    try:
-#        l = 30
-#        main(l)
-        print "Envoi en cours"
-        publish(camionId, ['YoloSwag'])
-        print "Elements envoyés"
-        sys.exit(0)
-    except KeyboardInterrupt:
-        print '\nInterrupted'
-        try:
-            for child in active_children():
-                print child
-                child.terminate()
-            sys.exit(0)
-        except SystemExit:
-            os._exit(0)
-    print "terminé"
