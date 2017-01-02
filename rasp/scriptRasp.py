@@ -17,7 +17,7 @@ import time
 serverName = "bord3l"
 serverPort = 1883
 camionId = 26
-nbIteration = 30
+nbIteration = 8
 ## ----------------------------------------------------------------------------
 
 ### FONCTIONS UTILES ----------------------------------------------------------
@@ -58,7 +58,7 @@ def scan(l):
     for i in range(0,l):
         print "Tour ",i
         red = read()
-        if red != '' :
+        if red != None and if red != '':
             temp.append(red)                                                   # On ajoute la valeur de l'étiquette si elle est non nulle
     temp = list(set(temp))                                                     # On transforme la liste pour supprimer les doublons
     if temp != []:
