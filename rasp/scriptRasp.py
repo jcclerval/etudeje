@@ -62,7 +62,8 @@ def scan(l):
             temp.append(red)                                                   # On ajoute la valeur de l'étiquette si elle est non nulle
     temp = list(set(temp))                                                     # On transforme la liste pour supprimer les doublons
     if temp != []:
-        publish(camionId, temp)                                                    # On publie la liste des etiquettes trouvées
+        publish(camionId, ["delete"])                                          # On supprime le contenu
+        publish(camionId, temp)                                                # On publie la liste des etiquettes trouvées
     return 0
     
 def publish(camionId, data):

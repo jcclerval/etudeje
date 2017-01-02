@@ -65,13 +65,31 @@ def fetchData(camion, etiId):
         pass
     return 0
     
-def updateData(camion, data):
-    print "Data :",data
+def deleteContent(camionId):
     con = False
     try:
-        print "Test"
         con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
-    
+        cur = con.cursor()
+        try:
+            cur.execute("DELETE * FROM camion WHERE id={camionId}".format(camionId=camionId))
+            print "Ancien contenu supprimé"
+        except:
+            pass
+    except mdb.Error, e:
+        print "Error %d: %s" % (e.args[0],e.args[1])
+        sys.exit(1)
+    finally:    
+        if con:    
+            con.close()
+    return 0
+def updateData(camion, data):
+    print "Data :",data
+    if data="delete":
+        deleteContent(camion)
+        return 0
+    con = False
+    try:
+        con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
         cur = con.cursor()
         try:
             cur.execute("INSERT INTO effectifs VALUES({data0}, {data1}, '{data2}', {data3});".format(data0 = str('NULL'), data1 = int(camion), data2 = str("YoloSwag"), data3 = int(1)))
@@ -79,12 +97,9 @@ def updateData(camion, data):
         except:
             pass
     except mdb.Error, e:
-      
         print "Error %d: %s" % (e.args[0],e.args[1])
         sys.exit(1)
-        
     finally:    
-            
         if con:    
             con.close()
     return 0
