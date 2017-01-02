@@ -79,7 +79,7 @@ def deleteContent(camionId):
         con = mdb.connect(host=host, user=user, passwd=password, db=bdd)
         cur = con.cursor()
         try:
-            cur.execute("DELETE FROM camion WHERE idcamion={camionId}".format(camionId=camionId))
+            cur.execute("DELETE FROM effectifs WHERE idcamion={camionId};".format(camionId=camionId))
             print "Ancien contenu supprimé"
         except:
             pass
