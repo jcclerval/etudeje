@@ -43,7 +43,7 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):
     print "Topic: ", msg.topic+'\nMessage: '+str(msg.payload)
-    if == "delete":
+    if str(msg.payload) == "delete":
         print "delete content"
         deleteContent(camion)
         return 0
