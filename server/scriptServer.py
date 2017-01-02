@@ -15,6 +15,10 @@ import time
 serverName = "bord3l"
 serverPort = 1883
 
+bdd = 'u925639974_grdf'
+host = 'localhost'
+user = 'root'
+password = 'jcclerval'
 ## ----------------------------------------------------------------------------
 
 ### FONCTIONS UTILES ----------------------------------------------------------
@@ -39,14 +43,18 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):
     print "Topic: ", msg.topic+'\nMessage: '+str(msg.payload)
+    if == "delete":
+        print "delete content"
+        deleteContent(camion)
+        return 0
     fetchData(msg.topic.split('/')[-1], str(msg.payload))
-    
+    return 0
     # Mise à jour de la base de donnees
 def fetchData(camion, etiId):
     con = False
     try:
         print "Etiquette :", etiId
-        con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
+        con = mdb.connect(host=host, user=user, passwd=password, db=bdd)
         cur = con.cursor()
         cur.execute("SELECT id FROM outils WHERE ref='{ref}';".format(ref=str(etiId)))
         temp = cur.fetchone()
@@ -68,7 +76,7 @@ def fetchData(camion, etiId):
 def deleteContent(camionId):
     con = False
     try:
-        con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
+        con = mdb.connect(host=host, user=user, passwd=password, db=bdd)
         cur = con.cursor()
         try:
             cur.execute("DELETE * FROM camion WHERE id={camionId}".format(camionId=camionId))
@@ -84,13 +92,9 @@ def deleteContent(camionId):
     return 0
 def updateData(camion, data):
     print "Data :",data
-    if data=="delete":
-        print "delete content"
-        deleteContent(camion)
-        return 0
     con = False
     try:
-        con = mdb.connect(host='localhost', user='root', passwd='jcclerval', db='u925639974_grdf');
+        con = mdb.connect(host=host, user=user, passwd=password, db=bdd)
         cur = con.cursor()
         try:
             cur.execute("INSERT INTO effectifs VALUES({data0}, {data1}, '{data2}', {data3});".format(data0 = str('NULL'), data1 = int(camion), data2 = str("YoloSwag"), data3 = int(1)))
