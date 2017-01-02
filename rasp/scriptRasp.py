@@ -58,7 +58,7 @@ def scan(l):
     for i in range(0,l):
         print "Tour ",i
         red = read()
-        if red != None:
+        if red != '' :
             temp.append(red)                                                   # On ajoute la valeur de l'étiquette si elle est non nulle
     temp = list(set(temp))                                                     # On transforme la liste pour supprimer les doublons
     if temp != []:
