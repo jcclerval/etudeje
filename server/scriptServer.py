@@ -84,7 +84,8 @@ def deleteContent(camionId):
     return 0
 def updateData(camion, data):
     print "Data :",data
-    if data="delete":
+    if data=="delete":
+        print "delete content"
         deleteContent(camion)
         return 0
     con = False
