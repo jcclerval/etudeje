@@ -45,7 +45,7 @@ def on_message(client, userdata, msg):
     print "Topic: ", msg.topic+'\nMessage: '+str(msg.payload)
     if str(msg.payload) == "delete":
         print "delete content"
-        deleteContent(msg.topic)
+        deleteContent(msg.topic.split('/')[-1])
         return 0
     fetchData(msg.topic.split('/')[-1], str(msg.payload))
     return 0

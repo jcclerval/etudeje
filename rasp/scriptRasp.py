@@ -72,6 +72,7 @@ def publish(camionId, data):
     mqttc.connect(serverName, serverPort)
     
     for element in data:
+        print "Publié :", element
         mqttc.publish("etudeje/"+str(camionId), element)
         mqttc.loop(2)
     return 0
