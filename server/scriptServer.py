@@ -97,7 +97,7 @@ def updateData(camion, data):
         con = mdb.connect(host=host, user=user, passwd=password, db=bdd)
         cur = con.cursor()
         try:
-            cur.execute("INSERT INTO effectifs VALUES({data0}, {data1}, '{data2}', {data3});".format(data0 = str('NULL'), data1 = int(camion), data2 = str("YoloSwag"), data3 = int(1)))
+            cur.execute("INSERT INTO effectifs VALUES({data0}, {data1}, '{data2}', {data3});".format(data0 = str('NULL'), data1 = int(camion), data2 = str(data), data3 = int(1)))
             print "Element ajouté"
         except:
             pass
